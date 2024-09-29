@@ -23,10 +23,6 @@ jobs:
       - name: Build library
         run: npm run build
 
-      - name: Verify dist folder
-        run: ls -la dist  # This verifies that the dist folder is created and contains files
-
-
       - name: Upload Release Assets
         uses: actions/upload-artifact@v3
         with:
@@ -36,15 +32,19 @@ jobs:
   upload-release-asset:
     needs: build
     runs-on: ubuntu-latest
+
     steps:
-      - name: Download dist
+      - name: Download dist artifact
         uses: actions/download-artifact@v3
         with:
           name: dist
 
+      - name: List dist contents
+        run: ls -R /home/runner/work/render-lib  # Full path to the downloaded dist directory
+
       - name: Upload Release Asset to GitHub
         uses: softprops/action-gh-release@v1
         with:
-          files: dist/*
+          files: /home/runner/work/render-lib/render-lib/dist/*
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
