@@ -1,6 +1,6 @@
 import './style.css'
-import { Render } from './render.ts'
-import { RenderOptions } from './renderOptions.ts'
+import { Render } from './render'
+import { RenderOptions } from './renderOptions'
 import * as THREE from 'three';
 
 const pos = new THREE.Vector3(-203.125, 80.47032928466797, -8865.62353515625);
@@ -8,10 +8,6 @@ const pos = new THREE.Vector3(-203.125, 80.47032928466797, -8865.62353515625);
 const gl = new Render(RenderOptions.CreateDefault(), pos);
 const controls = gl.getControls();
 const dom = gl.getRenderDom();
-
-gl.loadModel();
-//gl.visualize();
-gl.fetchPath()
 
 
 /*#region EventListeners*/
@@ -21,12 +17,12 @@ dom.addEventListener("mousemove", (event) => {
 });
 
 dom.addEventListener('mousedown', (event) => {
-   if (event.button === 0) controls.leftMouse(true);
+   // if (event.button === 0) controls.leftMouse(true);
    if (event.button === 2) controls.rightMouse(true);
 });
 
 dom.addEventListener('mouseup', (event) => {
-   if (event.button === 0) controls.leftMouse(false);
+   // if (event.button === 0) controls.leftMouse(false);
    if (event.button === 2) controls.rightMouse(false);
 });
 

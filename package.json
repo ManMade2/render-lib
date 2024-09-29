@@ -2,10 +2,15 @@
    "name": "render-lib",
    "private": true,
    "version": "0.0.0",
-   "type": "module",
+   "main": "dist/your-library-name.umd.js",
+   "module": "dist/your-library-name.es.js",
+   "types": "dist/types/your-entry-file.d.ts",
+   "files": [
+      "dist"
+   ],
    "scripts": {
       "dev": "vite",
-      "build": "tsc && vite build",
+      "build": "vite build && tsc",
       "preview": "vite preview"
    },
    "devDependencies": {

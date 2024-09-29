@@ -77,7 +77,7 @@ export abstract class BaseControl {
       this.isDragging = down;
    }
 
-   public leftMouse(down: boolean) {
+   public leftMouse() {
    }
 
    public getTarget(): Mesh {

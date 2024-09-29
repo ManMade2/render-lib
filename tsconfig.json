@@ -1,23 +1,16 @@
 {
   "compilerOptions": {
-    "target": "ES2020",
-    "useDefineForClassFields": true,
-    "module": "ESNext",
-    "lib": ["ES2020", "DOM", "DOM.Iterable"],
-    "skipLibCheck": true,
-
-    /* Bundler mode */
-    "moduleResolution": "bundler",
-    "allowImportingTsExtensions": true,
-    "isolatedModules": true,
-    "moduleDetection": "force",
-    "noEmit": true,
-
-    /* Linting */
-    "strict": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true
+    "declaration": true,              // This generates the .d.ts files
+    "declarationDir": "dist/types",   // Specify output directory for .d.ts files
+    "emitDeclarationOnly": true,      // Only emit the declaration files
+    "outDir": "dist",                 // Output directory for the compiled files
+    "module": "ESNext",               // Module system to use
+    "target": "ESNext",               // ECMAScript target version
+    "esModuleInterop": true,          // Compatibility for ES module imports
+    "skipLibCheck": true,             // Skips type checking of declaration files
+    "moduleResolution": "node",       // How module resolution works
+    "strict": true                    // Enable all strict type checking options
   },
-  "include": ["src"]
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist"]
 }
