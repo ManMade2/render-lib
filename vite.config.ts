@@ -5,7 +5,7 @@ export default defineConfig({
   build: {
     lib: {
       // Entry point of your library
-      entry: path.resolve(__dirname, 'src/main.ts'), 
+      entry: path.resolve(__dirname, 'src/render.ts'), 
       name: 'render-lib',
       fileName: (format) => `render-lib.${format}.js`,
     },

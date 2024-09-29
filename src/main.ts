@@ -1,4 +1,3 @@
-import './style.css'
 import { Render } from './render'
 import { RenderOptions } from './renderOptions'
 import * as THREE from 'three';
@@ -76,9 +75,7 @@ document.addEventListener('keyup', (event) => {
    }
 });
 
-window.addEventListener('resize', () => {
-   gl.resize();
-});
+
 
 /*#endregion*/
 

@@ -6,7 +6,7 @@ export class RenderOptions {
    readonly ambientLightColor: number;
    readonly ambientLightStrength: number;
 
-   constructor(canvasId: string, fov: number, near: number, far: number, ambientLightColor: number, ambientLightStrength: number) {
+   constructor(canvasId: string,fov: number, near: number, far: number, ambientLightColor: number, ambientLightStrength: number) {
       this.canvasId = canvasId;
       this.fov = fov;
       this.near = near;

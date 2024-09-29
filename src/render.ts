@@ -4,28 +4,36 @@ import { RenderOptions } from './renderOptions';
 import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader.js';
 import { MTLLoader } from 'three/examples/jsm/loaders/MTLLoader.js';
 
+export {RenderOptions} from './renderOptions'
+export {Controls} from './controls'
 
 export class Render {
    private readonly webGL: THREE.WebGLRenderer;
    private readonly controls: Controls;
    private readonly camera: THREE.PerspectiveCamera;
+   private readonly canvas: HTMLCanvasElement;
    private scene: THREE.Scene;
 
    constructor(options: RenderOptions, position: THREE.Vector3) {
 
       const canvas = this.getCanvas(options.canvasId);
       this.webGL = new THREE.WebGLRenderer({ canvas });
-      this.webGL.setSize(window.innerWidth, window.innerHeight);
+      this.webGL.setSize(canvas.width, canvas.height);
+      this.canvas = canvas;
 
       this.camera = new THREE.PerspectiveCamera(
          options.fov,
-         window.innerWidth / window.innerHeight,
+         canvas.width / canvas.height,
          options.near,
          options.far
       );
       
       this.controls = new Controls(this.camera, position);
       this.scene = new THREE.Scene();
+
+      window.addEventListener('resize', () => {
+         this.resize();
+      });
 
       this.setupScene(new THREE.Scene());
    }
@@ -52,6 +60,12 @@ export class Render {
       return canvas;
    }
 
+   private resize() {
+      this.camera.aspect = this.canvas.width / this.canvas.height;
+      this.camera.updateProjectionMatrix();
+      this.webGL.setSize(this.canvas.width, this.canvas.height);
+   }   
+
    public getControls() {
       return this.controls;
    }
@@ -65,12 +79,7 @@ export class Render {
       this.webGL.render(this.scene, this.camera);
    }
 
-   public resize() {
-      this.camera.aspect = window.innerWidth / window.innerHeight;
-      this.camera.updateProjectionMatrix();
-      this.webGL.setSize(window.innerWidth, window.innerHeight);
-   }
-   
+
    public async loadModel() {
       const objLoader = new OBJLoader();
       const mtlLoader = new MTLLoader();

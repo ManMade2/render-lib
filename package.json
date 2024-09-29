@@ -1,19 +1,20 @@
 {
    "name": "render-lib",
-   "private": true,
-   "version": "0.0.0",
+   "private": false,
+   "version": "0.0.6",
    "main": "dist/render-lib.umd.js",
    "module": "dist/render-lib.es.js",
-   "types": "dist/types/render-lib.d.ts",
+   "types": "dist/render-lib.d.ts",
    "files": [
       "dist"
    ],
    "scripts": {
       "dev": "vite",
-      "build": "vite build && tsc",
+      "build": "vite build && tsc && npx rollup -c",
       "preview": "vite preview"
    },
    "devDependencies": {
+      "rollup-plugin-dts": "^6.1.1",
       "typescript": "^5.5.3",
       "vite": "^5.4.1"
    },
