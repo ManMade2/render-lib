@@ -23,8 +23,6 @@ jobs:
       - name: Build library
         run: npm run build
 
-      - name: Verify dist folder
-        run: ls -la dist  # This verifies that the dist folder is created and contains files
 
 
       - name: Upload Release Assets
@@ -42,6 +40,11 @@ jobs:
         with:
           name: dist
 
+
+      - name: Verify dist folder
+        run: ls -la dist  # This verifies that the dist folder is created and contains files
+
+        
       - name: Upload Release Asset to GitHub
         uses: softprops/action-gh-release@v1
         with:
