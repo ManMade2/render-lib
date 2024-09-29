@@ -23,6 +23,10 @@ jobs:
       - name: Build library
         run: npm run build
 
+      - name: Verify dist folder
+        run: ls -la dist  # This verifies that the dist folder is created and contains files
+
+
       - name: Upload Release Assets
         uses: actions/upload-artifact@v3
         with:
