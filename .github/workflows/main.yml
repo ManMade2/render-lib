@@ -40,7 +40,7 @@ jobs:
           name: dist
 
       - name: List dist contents
-        run: ls -la /home/runner/work/render-lib/render-lib/dist  # Full path to the downloaded dist directory
+        run: ls -la /home/runner/work/render-lib  # Full path to the downloaded dist directory
 
       - name: Upload Release Asset to GitHub
         uses: softprops/action-gh-release@v1
