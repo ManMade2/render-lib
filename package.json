@@ -2,9 +2,9 @@
    "name": "render-lib",
    "private": true,
    "version": "0.0.0",
-   "main": "dist/your-library-name.umd.js",
-   "module": "dist/your-library-name.es.js",
-   "types": "dist/types/your-entry-file.d.ts",
+   "main": "dist/render-lib.umd.js",
+   "module": "dist/render-lib.es.js",
+   "types": "dist/types/render-lib.d.ts",
    "files": [
       "dist"
    ],
