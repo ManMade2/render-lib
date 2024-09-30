@@ -11,25 +11,27 @@ export class Render {
    private readonly webGL: THREE.WebGLRenderer;
    private readonly controls: Controls;
    private readonly camera: THREE.PerspectiveCamera;
-   private readonly canvas: HTMLCanvasElement;
+   private readonly assetsPath: string;
    private scene: THREE.Scene;
 
    constructor(options: RenderOptions, position: THREE.Vector3) {
 
       const canvas = this.getCanvas(options.canvasId);
-      this.webGL = new THREE.WebGLRenderer({ canvas });
-      this.webGL.setSize(canvas.width, canvas.height);
-      this.canvas = canvas;
+      this.webGL = new THREE.WebGLRenderer({ canvas, antialias:true });
+      this.webGL.setPixelRatio(window.devicePixelRatio);
+      this.assetsPath = options.assetsPath;
 
       this.camera = new THREE.PerspectiveCamera(
          options.fov,
-         canvas.width / canvas.height,
+         window.innerWidth / window.innerHeight,
          options.near,
          options.far
       );
       
       this.controls = new Controls(this.camera, position);
       this.scene = new THREE.Scene();
+      this.resize();
+
 
       window.addEventListener('resize', () => {
          this.resize();
@@ -61,9 +63,9 @@ export class Render {
    }
 
    private resize() {
-      this.camera.aspect = this.canvas.width / this.canvas.height;
+      this.camera.aspect = window.innerWidth / window.innerHeight;
       this.camera.updateProjectionMatrix();
-      this.webGL.setSize(this.canvas.width, this.canvas.height);
+      this.webGL.setSize(window.innerWidth, window.innerHeight);
    }   
 
    public getControls() {
@@ -79,18 +81,15 @@ export class Render {
       this.webGL.render(this.scene, this.camera);
    }
 
-
-   public async loadModel() {
+   public async loadModel(name:string) {
       const objLoader = new OBJLoader();
       const mtlLoader = new MTLLoader();
 
-      const name = "adt_32_48";
-
-      const materials = await mtlLoader.loadAsync(`/models/${name}.mtl`);
+      const materials = await mtlLoader.loadAsync(`${this.assetsPath}/materials/${name}.mtl`);
       materials.preload();
       objLoader.setMaterials(materials);
 
-      const tile = await objLoader.loadAsync(`/models/${name}.obj`);
+      const tile = await objLoader.loadAsync(`${this.assetsPath}/models/${name}.obj`);
       this.scene.add(tile)
    }
 }

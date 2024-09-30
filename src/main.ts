@@ -25,7 +25,7 @@ dom.addEventListener('mouseup', (event) => {
    if (event.button === 2) controls.rightMouse(false);
 });
 
-dom.addEventListener('contextmenu', (event: MouseEvent) => {
+dom.addEventListener('contextmenu', (event: MouseEvent) => {   
    event.preventDefault();
 });
 
